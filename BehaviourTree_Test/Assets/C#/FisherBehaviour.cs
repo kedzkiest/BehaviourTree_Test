@@ -11,6 +11,7 @@ public class FisherBehaviour : MonoBehaviour
 
     public float WaitTimeOnStart;
     public float WaitTimeOnBoarding;
+    public float WaitTimeOnFishing;
 
     [Range(0f, 1f)]
     public float SuccessProbabilityOnStart;
@@ -69,6 +70,8 @@ public class FisherBehaviour : MonoBehaviour
         Wander.AddChild(goToStartPoint);
         Wander.AddChild(waitOnStart);
 
+        Wander.AddChild(hasGotFish);
+
         Wander.AddChild(goToBoardPoint);
         Wander.AddChild(waitOnBoarding);
 
@@ -83,11 +86,13 @@ public class FisherBehaviour : MonoBehaviour
     
     public Node.Status HasFish()
     {
-        if(FishManager.FishNum <= 3)
+        if(FishManager.FishNum < 3)
         {
+            SEPlayer.GetComponent<AudioSource>().volume = 1;
             return Node.Status.SUCCESS;
         }
 
+        SEPlayer.GetComponent<AudioSource>().volume = 0;
         return Node.Status.FAILURE;
     }
     
@@ -189,7 +194,7 @@ public class FisherBehaviour : MonoBehaviour
     {
         elapsedTime += Time.deltaTime;
 
-        if (elapsedTime <= 2)
+        if (elapsedTime <= WaitTimeOnFishing)
         {
             return Node.Status.RUNNING;
         }
@@ -230,7 +235,8 @@ public class FisherBehaviour : MonoBehaviour
 
         if (s == Node.Status.SUCCESS)
         {
-            Instantiate(Tuna);
+            FishManager.FishNum++;
+            FishManager.Fish.Add(Instantiate(Tuna));
         }
 
         return s;
@@ -242,7 +248,8 @@ public class FisherBehaviour : MonoBehaviour
 
         if (s == Node.Status.SUCCESS)
         {
-            Instantiate(Salmon);
+            FishManager.FishNum++;
+            FishManager.Fish.Add(Instantiate(Salmon));
         }
 
         return s;
