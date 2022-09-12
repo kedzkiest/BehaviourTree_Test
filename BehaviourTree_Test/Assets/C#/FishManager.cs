@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FishManager : MonoBehaviour
 {
-    [SerializeField]
     private int _FishNum;
 
     private List<GameObject> _Fish = new List<GameObject>();
+
+    public TextMeshProUGUI FishNumText;
 
     public List<GameObject> Fish
     {
@@ -30,10 +33,7 @@ public class FishManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            ClearFish();
-        }
+        FishNumText.text = "Number of fish: " + _FishNum;
     }
 
     public void ClearFish()
