@@ -8,7 +8,6 @@ public class FisherBehaviour : MonoBehaviour
     public GameObject StartPoint;
     public GameObject BoardPoint;
     public GameObject FishPoint;
-    public GameObject StorePoint;
 
     public float WaitTimeOnStart;
     public float WaitTimeOnBoarding;
@@ -127,7 +126,7 @@ public class FisherBehaviour : MonoBehaviour
 
     public Node.Status GoToStorePoint()
     {
-        return GoToWaypoint(StorePoint);
+        return GoToLocation(new Vector3(3 + (FishManager.FishNum - 1) % 5, 1.36f, 4.4f - FishManager.FishNum / 6));
     }
 
     public Node.Status GoToWaypoint(GameObject waypoint)
@@ -305,7 +304,23 @@ public class FisherBehaviour : MonoBehaviour
     {
         GameObject go = transform.GetChild(1).gameObject;
         go.transform.SetParent(null);
-        go.transform.position = new Vector3(2 + FishManager.FishNum, 1.36f, 4.4f);
+
+        // basic position for fish
+        Vector3 fishPos = transform.position;
+
+        // adjust posiiton for Salmon
+        if (go.name[0] == 'S') fishPos += new Vector3(-1.3f, 0.0f, -0.4f);
+
+        // add some randomness in position
+        fishPos += new Vector3(Random.Range(-0.15f, 0.15f), 0f, Random.Range(-0.15f, 0.15f));
+
+        // add some randomness in rotation
+        go.transform.rotation = Quaternion.Euler(0, 0, Random.Range(-90, 91));
+
+        // adjust rotation for Salmon
+        if (go.name[0] == 'S') go.transform.rotation = Quaternion.Euler(Random.Range(-20, 21), Random.Range(-10, 11), 0);
+
+        go.transform.position = fishPos;
 
         return Node.Status.SUCCESS;
     }
