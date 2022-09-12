@@ -11,14 +11,11 @@ public class FisherBehaviour : MonoBehaviour
 
     public float WaitTimeOnStart;
     public float WaitTimeOnBoarding;
-    public float WaitTimeOnFishing;
 
     [Range(0f, 1f)]
     public float SuccessProbabilityOnStart;
     [Range (0f, 1f)]
     public float SuccessProbabilityOnBoarding;
-    [Range (0f, 1f)]
-    public float SuccessProbabilityOnFishing;
 
     public GameObject Tuna;
     public GameObject Salmon;
@@ -68,7 +65,6 @@ public class FisherBehaviour : MonoBehaviour
 
         Leaf waitOnStart = new Leaf("Wait On Start", WaitOnStart);
         Leaf waitOnBoarding = new Leaf("Wait On Boarding", WaitOnBoarding);
-        Leaf waitOnFishing = new Leaf("Wait On Fishing", WaitOnFishing);
 
         Wander.AddChild(goToStartPoint);
         Wander.AddChild(waitOnStart);
@@ -77,7 +73,6 @@ public class FisherBehaviour : MonoBehaviour
         Wander.AddChild(waitOnBoarding);
 
         Wander.AddChild(goToFishPoint);
-        Wander.AddChild(waitOnFishing);
 
         Wander.AddChild(catchFish);
 
@@ -164,9 +159,6 @@ public class FisherBehaviour : MonoBehaviour
                 case "Wait On Boarding":
                     successProbability = SuccessProbabilityOnBoarding;
                     break;
-                case "Wait On Fishing":
-                    successProbability = SuccessProbabilityOnFishing;
-                    break;
             }
 
             if(rand <= successProbability * 100)
@@ -191,18 +183,6 @@ public class FisherBehaviour : MonoBehaviour
     public Node.Status WaitOnBoarding()
     {
         return Wait(WaitTimeOnBoarding);
-    }
-
-    public Node.Status WaitOnFishing()
-    {
-        Node.Status s = Wait(WaitTimeOnFishing);
-
-        if(s == Node.Status.SUCCESS)
-        {
-            FishManager.FishNum++;
-        }
-
-        return s;
     }
 
     public Node.Status CatchFish()
