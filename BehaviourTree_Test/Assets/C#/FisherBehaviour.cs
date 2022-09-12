@@ -32,9 +32,11 @@ public class FisherBehaviour : MonoBehaviour
         Leaf goToStartPoint = new Leaf("Go To Start Point", GoToStartPoint);
         Leaf goToBoardPoint = new Leaf("Go To Board Point", GoToBoardPoint);
         Leaf goToFishPoint = new Leaf("Go To Fish Point", GoToFishPoint);
+        Leaf wait = new Leaf("Wait", Wait);
 
         Wander.AddChild(goToBoardPoint);
         Wander.AddChild(goToFishPoint);
+        Wander.AddChild(wait);
         Wander.AddChild(goToStartPoint);
         _Tree.AddChild(Wander);
 
@@ -75,13 +77,30 @@ public class FisherBehaviour : MonoBehaviour
             _State = ActionState.IDLE;
             return Node.Status.FAILURE;
         }
-        else if(distanceToTarget < 1)
+        else if(distanceToTarget < 0.5f)
         {
             _State = ActionState.IDLE;
             return Node.Status.SUCCESS;
         }
 
         return Node.Status.RUNNING;
+    }
+
+    private float elapsedTime = 0;
+
+    public Node.Status Wait()
+    {
+        elapsedTime += Time.deltaTime;
+
+        if(elapsedTime <= 5.0f)
+        {
+            return Node.Status.RUNNING;
+        }
+        else
+        {
+            elapsedTime = 0;
+            return Node.Status.SUCCESS;
+        }
     }
 
     // Update is called once per frame
@@ -95,5 +114,7 @@ public class FisherBehaviour : MonoBehaviour
         {
             _TreeStatus = _Tree.Process();
         }
+
+        Debug.Log(elapsedTime);
     }
 }
