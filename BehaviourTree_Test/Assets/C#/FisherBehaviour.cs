@@ -34,6 +34,8 @@ public class FisherBehaviour : MonoBehaviour
 
     public SEPlayer SEPlayer;
 
+    public FishManager FishManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +44,10 @@ public class FisherBehaviour : MonoBehaviour
 
         _Tree = new BehaviourTree();
         Sequence Wander = new Sequence("Wander");
+
+        // condition node
+        Leaf hasGotFish = new Leaf("Has Got Fish", HasFish);
+
         Leaf goToStartPoint = new Leaf("Go To Start Point", GoToStartPoint);
         Leaf goToBoardPoint = new Leaf("Go To Board Point", GoToBoardPoint);
         Leaf goToFishPoint = new Leaf("Go To Fish Point", GoToFishPoint);
@@ -63,7 +69,17 @@ public class FisherBehaviour : MonoBehaviour
 
         _Tree.PrintTree();
     }
+    
+    public Node.Status HasFish()
+    {
+        if(FishManager.FishNum <= 3)
+        {
+            return Node.Status.SUCCESS;
+        }
 
+        return Node.Status.FAILURE;
+    }
+    
     public Node.Status GoToBoardPoint()
     {
         return GoToWaypoint(BoardPoint);
@@ -163,7 +179,14 @@ public class FisherBehaviour : MonoBehaviour
 
     public Node.Status WaitOnFishing()
     {
-        return Wait(WaitTimeOnFishing);
+        Node.Status s = Wait(WaitTimeOnFishing);
+
+        if(s == Node.Status.SUCCESS)
+        {
+            FishManager.FishNum++;
+        }
+
+        return s;
     }
 
     // Update is called once per frame
