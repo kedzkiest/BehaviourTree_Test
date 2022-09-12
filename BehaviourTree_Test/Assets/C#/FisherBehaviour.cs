@@ -133,15 +133,15 @@ public class FisherBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /* use this for single action flow
         if(_TreeStatus != Node.Status.SUCCESS)
         {
             _TreeStatus = _Tree.Process();
         }
-        else
-        {
-            _TreeStatus = _Tree.Process();
-        }
+        */
 
-        Debug.Log(elapsedTime);
+        // use this for looping action
+        _TreeStatus = _Tree.Process();
+        
     }
 }
