@@ -236,7 +236,10 @@ public class FisherBehaviour : MonoBehaviour
         if (s == Node.Status.SUCCESS)
         {
             FishManager.FishNum++;
-            FishManager.Fish.Add(Instantiate(Tuna));
+            GameObject go = Instantiate(Tuna);
+            go.transform.position = transform.position + new Vector3(0, 1.0f, 0);
+            go.transform.SetParent(transform);
+            FishManager.Fish.Add(go);
         }
 
         return s;
@@ -249,7 +252,10 @@ public class FisherBehaviour : MonoBehaviour
         if (s == Node.Status.SUCCESS)
         {
             FishManager.FishNum++;
-            FishManager.Fish.Add(Instantiate(Salmon));
+            GameObject go = Instantiate(Salmon);
+            go.transform.position = transform.position + new Vector3(-1.3f, 1.0f, -0.4f); ;
+            go.transform.SetParent(transform);
+            FishManager.Fish.Add(go);
         }
 
         return s;

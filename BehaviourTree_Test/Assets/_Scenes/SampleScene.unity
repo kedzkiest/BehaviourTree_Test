@@ -838,12 +838,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1797875825}
     - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
+      propertyPath: WaitTimeOnFishing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
+      propertyPath: WaitTimeOnBoarding
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
       propertyPath: SuccessProbabilityOnStart
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
       propertyPath: SuccessProbabilityCatchTuna
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
       propertyPath: SuccessProbabilityOnFishing
@@ -851,11 +859,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
       propertyPath: SuccessProbabilityOnBoarding
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
       propertyPath: SuccessProbabilityCatchSalmon
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
