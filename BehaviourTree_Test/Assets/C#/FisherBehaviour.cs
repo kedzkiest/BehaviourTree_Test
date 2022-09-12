@@ -172,12 +172,13 @@ public class FisherBehaviour : MonoBehaviour
         }
         */
 
-        // use this for looping action
+        // use this for resetting tree progress when action failed
         if(_TreeStatus == Node.Status.FAILURE)
         {
             _Tree.ResetTreeProgress();
         }
 
+        // use this for looping action
         _TreeStatus = _Tree.Process();
     }
 }
