@@ -140,12 +140,12 @@ public class FisherBehaviour : MonoBehaviour
             if(rand <= successProbability * 100)
             {
                 //Debug.Log("Success");
-                if(SEPlayer != null) SEPlayer.PlaySuccessSound();
+                if(SEPlayer.gameObject.activeSelf) SEPlayer.PlaySuccessSound();
                 return Node.Status.SUCCESS;
             }
 
             //Debug.Log("Failure");
-            if (SEPlayer != null) SEPlayer.PlayFailureSound();
+            if (SEPlayer.gameObject.activeSelf) SEPlayer.PlayFailureSound();
             return Node.Status.FAILURE;
 
         }
