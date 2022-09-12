@@ -32,6 +32,8 @@ public class FisherBehaviour : MonoBehaviour
 
     private Node.Status _TreeStatus = Node.Status.RUNNING;
 
+    public SEPlayer SEPlayer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -135,13 +137,15 @@ public class FisherBehaviour : MonoBehaviour
                     break;
             }
 
-            if(rand < successProbability * 100)
+            if(rand <= successProbability * 100)
             {
                 //Debug.Log("Success");
+                if(SEPlayer != null) SEPlayer.PlaySuccessSound();
                 return Node.Status.SUCCESS;
             }
 
             //Debug.Log("Failure");
+            if (SEPlayer != null) SEPlayer.PlayFailureSound();
             return Node.Status.FAILURE;
 
         }
