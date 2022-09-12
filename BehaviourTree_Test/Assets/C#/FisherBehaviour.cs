@@ -41,6 +41,7 @@ public class FisherBehaviour : MonoBehaviour
         Leaf waitOnBoarding = new Leaf("Wait On Boarding", WaitOnBoarding);
         Leaf waitOnFishing = new Leaf("Wait On Fishing", WaitOnFishing);
 
+        Wander.AddChild(goToStartPoint);
         Wander.AddChild(waitOnStart);
 
         Wander.AddChild(goToBoardPoint);
@@ -49,7 +50,6 @@ public class FisherBehaviour : MonoBehaviour
         Wander.AddChild(goToFishPoint);
         Wander.AddChild(waitOnFishing);
 
-        Wander.AddChild(goToStartPoint);
         _Tree.AddChild(Wander);
 
         _Tree.PrintTree();
@@ -111,7 +111,16 @@ public class FisherBehaviour : MonoBehaviour
         else
         {
             elapsedTime = 0;
-            return Node.Status.SUCCESS;
+            int rand = Random.Range(0, 100);
+            if(rand < 50)
+            {
+                Debug.Log("Success");
+                return Node.Status.SUCCESS;
+            }
+
+            Debug.Log("Failure");
+            return Node.Status.FAILURE;
+
         }
     }
 
@@ -142,6 +151,5 @@ public class FisherBehaviour : MonoBehaviour
 
         // use this for looping action
         _TreeStatus = _Tree.Process();
-        
     }
 }
