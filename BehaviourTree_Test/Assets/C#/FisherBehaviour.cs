@@ -13,6 +13,13 @@ public class FisherBehaviour : MonoBehaviour
     public float WaitTimeOnBoarding;
     public float WaitTimeOnFishing;
 
+    [Range(0f, 1f)]
+    public float SuccessProbabilityOnStart;
+    [Range (0f, 1f)]
+    public float SuccessProbabilityOnBoarding;
+    [Range (0f, 1f)]
+    public float SuccessProbabilityOnFishing;
+
     private NavMeshAgent _Agent;
     private BehaviourTree _Tree;
     
@@ -37,7 +44,7 @@ public class FisherBehaviour : MonoBehaviour
         Leaf goToBoardPoint = new Leaf("Go To Board Point", GoToBoardPoint);
         Leaf goToFishPoint = new Leaf("Go To Fish Point", GoToFishPoint);
 
-        Leaf waitOnStart = new Leaf("Wait", WaitOnStart);
+        Leaf waitOnStart = new Leaf("Wait On Start", WaitOnStart);
         Leaf waitOnBoarding = new Leaf("Wait On Boarding", WaitOnBoarding);
         Leaf waitOnFishing = new Leaf("Wait On Fishing", WaitOnFishing);
 
@@ -111,14 +118,30 @@ public class FisherBehaviour : MonoBehaviour
         else
         {
             elapsedTime = 0;
-            int rand = Random.Range(0, 100);
-            if(rand < 50)
+            float rand = Random.Range(0.0f, 100.0f);
+            string s = Node.currentProcess;
+            float successProbability = 1;
+
+            switch (s)
             {
-                Debug.Log("Success");
+                case "Wait On Start":
+                    successProbability = SuccessProbabilityOnStart;
+                    break;
+                case "Wait On Boarding":
+                    successProbability = SuccessProbabilityOnBoarding;
+                    break;
+                case "Wait On Fishing":
+                    successProbability = SuccessProbabilityOnFishing;
+                    break;
+            }
+
+            if(rand < successProbability * 100)
+            {
+                //Debug.Log("Success");
                 return Node.Status.SUCCESS;
             }
 
-            Debug.Log("Failure");
+            //Debug.Log("Failure");
             return Node.Status.FAILURE;
 
         }
@@ -150,6 +173,11 @@ public class FisherBehaviour : MonoBehaviour
         */
 
         // use this for looping action
+        if(_TreeStatus == Node.Status.FAILURE)
+        {
+            _Tree.ResetTreeProgress();
+        }
+
         _TreeStatus = _Tree.Process();
     }
 }

@@ -16,6 +16,8 @@ public class Node
     public int currentChild = 0;
     public string name;
 
+    public static string currentProcess;
+
     public Node() { }
 
     public Node(string n)

@@ -19,6 +19,7 @@ public class Leaf : Node
     {
         if(ProcessMethod != null)
         {
+            currentProcess = name;
             return ProcessMethod();
         }
 

@@ -45,4 +45,21 @@ public class BehaviourTree : Node
 
         Debug.Log(treePrintout);
     }
+
+    public void ResetTreeProgress()
+    {
+        Stack<NodeLevel> nodeStack = new Stack<NodeLevel>();
+        Node currentNode = this;
+        nodeStack.Push(new NodeLevel { level = 0, node = currentNode });
+
+        while (nodeStack.Count != 0)
+        {
+            NodeLevel nextNode = nodeStack.Pop();
+            nextNode.node.currentChild = 0;
+            for (int i = nextNode.node.children.Count - 1; i >= 0; i--)
+            {
+                nodeStack.Push(new NodeLevel { level = nextNode.level + 1, node = nextNode.node.children[i] });
+            }
+        }
+    }
 }
