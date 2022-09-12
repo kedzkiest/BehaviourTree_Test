@@ -20,6 +20,14 @@ public class FisherBehaviour : MonoBehaviour
     [Range (0f, 1f)]
     public float SuccessProbabilityOnFishing;
 
+    public GameObject Tuna;
+    public GameObject Salmon;
+
+    [Range(0f, 1f)]
+    public float SuccessProbabilityCatchTuna;
+    [Range(0f, 1f)]
+    public float SuccessProbabilityCatchSalmon;
+
     private NavMeshAgent _Agent;
     private BehaviourTree _Tree;
     
@@ -52,6 +60,12 @@ public class FisherBehaviour : MonoBehaviour
         Leaf goToBoardPoint = new Leaf("Go To Board Point", GoToBoardPoint);
         Leaf goToFishPoint = new Leaf("Go To Fish Point", GoToFishPoint);
 
+        Selector catchFish = new Selector("Catch A Fish");
+        Leaf catchTuna = new Leaf("Catch A Tuna", CatchTuna);
+        Leaf catchSalmon = new Leaf("Catch A Salmon", CatchSalmon);
+        catchFish.AddChild(catchTuna);
+        catchFish.AddChild(catchSalmon);
+
         Leaf waitOnStart = new Leaf("Wait On Start", WaitOnStart);
         Leaf waitOnBoarding = new Leaf("Wait On Boarding", WaitOnBoarding);
         Leaf waitOnFishing = new Leaf("Wait On Fishing", WaitOnFishing);
@@ -64,6 +78,8 @@ public class FisherBehaviour : MonoBehaviour
 
         Wander.AddChild(goToFishPoint);
         Wander.AddChild(waitOnFishing);
+
+        Wander.AddChild(catchFish);
 
         _Tree.AddChild(Wander);
 
@@ -184,6 +200,69 @@ public class FisherBehaviour : MonoBehaviour
         if(s == Node.Status.SUCCESS)
         {
             FishManager.FishNum++;
+        }
+
+        return s;
+    }
+
+    public Node.Status CatchFish()
+    {
+        elapsedTime += Time.deltaTime;
+
+        if (elapsedTime <= 2)
+        {
+            return Node.Status.RUNNING;
+        }
+        else
+        {
+            elapsedTime = 0;
+            float rand = Random.Range(0.0f, 100.0f);
+            string s = Node.currentProcess;
+            float successProbability = 1;
+
+            switch (s)
+            {
+                case "Catch A Tuna":
+                    successProbability = SuccessProbabilityCatchTuna;
+                    break;
+                case "Catch A Salmon":
+                    successProbability = SuccessProbabilityCatchSalmon;
+                    break;
+            }
+
+            if (rand <= successProbability * 100)
+            {
+                //Debug.Log("Success");
+                if (SEPlayer.gameObject.activeSelf) SEPlayer.PlaySuccessSound();
+                return Node.Status.SUCCESS;
+            }
+
+            //Debug.Log("Failure");
+            if (SEPlayer.gameObject.activeSelf) SEPlayer.PlayFailureSound();
+            return Node.Status.FAILURE;
+
+        }
+    }
+
+    public Node.Status CatchTuna()
+    {
+        Node.Status s = CatchFish();
+
+        if (s == Node.Status.SUCCESS)
+        {
+            Instantiate(Tuna);
+        }
+
+        return s;
+    }
+
+    public Node.Status CatchSalmon()
+    {
+        Node.Status s = CatchFish();
+
+        if (s == Node.Status.SUCCESS)
+        {
+            Instantiate(Salmon);
         }
 
         return s;
