@@ -8,15 +8,19 @@ public class FisherBehaviour : MonoBehaviour
     public GameObject StartPoint;
     public GameObject BoardPoint;
     public GameObject FishPoint;
+    public GameObject StorePoint;
 
     public float WaitTimeOnStart;
     public float WaitTimeOnBoarding;
     public float WaitTimeOnFishing;
+    public float WaitTimeOnStoring;
 
     [Range(0f, 1f)]
     public float SuccessProbabilityOnStart;
     [Range (0f, 1f)]
     public float SuccessProbabilityOnBoarding;
+
+    public int EnoughFishNum;
 
     public GameObject Tuna;
     public GameObject Salmon;
@@ -25,6 +29,8 @@ public class FisherBehaviour : MonoBehaviour
     public float SuccessProbabilityCatchTuna;
     [Range(0f, 1f)]
     public float SuccessProbabilityCatchSalmon;
+    [Range(0f, 1f)]
+    public float SuccessProbabilityStoreFish;
 
     private NavMeshAgent _Agent;
     private BehaviourTree _Tree;
@@ -57,6 +63,7 @@ public class FisherBehaviour : MonoBehaviour
         Leaf goToStartPoint = new Leaf("Go To Start Point", GoToStartPoint);
         Leaf goToBoardPoint = new Leaf("Go To Board Point", GoToBoardPoint);
         Leaf goToFishPoint = new Leaf("Go To Fish Point", GoToFishPoint);
+        Leaf goToStorePoint = new Leaf("Go To Store Point", GoToStorePoint);
 
         Selector catchFish = new Selector("Catch A Fish");
         Leaf catchTuna = new Leaf("Catch A Tuna", CatchTuna);
@@ -66,6 +73,9 @@ public class FisherBehaviour : MonoBehaviour
 
         Leaf waitOnStart = new Leaf("Wait On Start", WaitOnStart);
         Leaf waitOnBoarding = new Leaf("Wait On Boarding", WaitOnBoarding);
+        Leaf waitOnStoring = new Leaf("Wait On Storing", WaitOnStoring);
+
+        Leaf storeFish = new Leaf("Store A Fish", StoreFish);
 
         Wander.AddChild(goToStartPoint);
         Wander.AddChild(waitOnStart);
@@ -76,8 +86,12 @@ public class FisherBehaviour : MonoBehaviour
         Wander.AddChild(waitOnBoarding);
 
         Wander.AddChild(goToFishPoint);
-
+        // catchFish has a wait in it (doen not have a separate wait method)
         Wander.AddChild(catchFish);
+
+        Wander.AddChild(goToStorePoint);
+        Wander.AddChild(waitOnStoring);
+        Wander.AddChild(storeFish);
 
         _Tree.AddChild(Wander);
 
@@ -86,7 +100,7 @@ public class FisherBehaviour : MonoBehaviour
     
     public Node.Status HasFish()
     {
-        if(FishManager.FishNum < 3)
+        if(FishManager.FishNum < EnoughFishNum)
         {
             SEPlayer.GetComponent<AudioSource>().volume = 1;
             return Node.Status.SUCCESS;
@@ -109,6 +123,11 @@ public class FisherBehaviour : MonoBehaviour
     public Node.Status GoToStartPoint()
     {
         return GoToWaypoint(StartPoint);
+    }
+
+    public Node.Status GoToStorePoint()
+    {
+        return GoToWaypoint(StorePoint);
     }
 
     public Node.Status GoToWaypoint(GameObject waypoint)
@@ -164,6 +183,9 @@ public class FisherBehaviour : MonoBehaviour
                 case "Wait On Boarding":
                     successProbability = SuccessProbabilityOnBoarding;
                     break;
+                case "Wait On Storing":
+                    successProbability = SuccessProbabilityStoreFish;
+                    break;
             }
 
             if(rand <= successProbability * 100)
@@ -188,6 +210,24 @@ public class FisherBehaviour : MonoBehaviour
     public Node.Status WaitOnBoarding()
     {
         return Wait(WaitTimeOnBoarding);
+    }
+
+    public Node.Status WaitOnStoring()
+    {
+        Node.Status s =  Wait(WaitTimeOnStoring);
+
+        if(s == Node.Status.FAILURE)
+        {
+            FishManager.FishNum--;
+            // remove last element of fish list
+            GameObject go = FishManager.Fish[FishManager.Fish.Count - 1];
+            FishManager.Fish.Remove(go);
+            Destroy(go);
+            
+            return Node.Status.FAILURE;
+        }
+
+        return s;
     }
 
     public Node.Status CatchFish()
@@ -259,6 +299,15 @@ public class FisherBehaviour : MonoBehaviour
         }
 
         return s;
+    }
+
+    public Node.Status StoreFish()
+    {
+        GameObject go = transform.GetChild(1).gameObject;
+        go.transform.SetParent(null);
+        go.transform.position = new Vector3(2 + FishManager.FishNum, 1.36f, 4.4f);
+
+        return Node.Status.SUCCESS;
     }
 
     // Update is called once per frame
