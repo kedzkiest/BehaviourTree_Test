@@ -9,6 +9,10 @@ public class FisherBehaviour : MonoBehaviour
     public GameObject BoardPoint;
     public GameObject FishPoint;
 
+    public float WaitTimeOnStart;
+    public float WaitTimeOnBoarding;
+    public float WaitTimeOnFishing;
+
     private NavMeshAgent _Agent;
     private BehaviourTree _Tree;
     
@@ -32,11 +36,19 @@ public class FisherBehaviour : MonoBehaviour
         Leaf goToStartPoint = new Leaf("Go To Start Point", GoToStartPoint);
         Leaf goToBoardPoint = new Leaf("Go To Board Point", GoToBoardPoint);
         Leaf goToFishPoint = new Leaf("Go To Fish Point", GoToFishPoint);
-        Leaf wait = new Leaf("Wait", Wait);
+
+        Leaf waitOnStart = new Leaf("Wait", WaitOnStart);
+        Leaf waitOnBoarding = new Leaf("Wait On Boarding", WaitOnBoarding);
+        Leaf waitOnFishing = new Leaf("Wait On Fishing", WaitOnFishing);
+
+        Wander.AddChild(waitOnStart);
 
         Wander.AddChild(goToBoardPoint);
+        Wander.AddChild(waitOnBoarding);
+
         Wander.AddChild(goToFishPoint);
-        Wander.AddChild(wait);
+        Wander.AddChild(waitOnFishing);
+
         Wander.AddChild(goToStartPoint);
         _Tree.AddChild(Wander);
 
@@ -88,11 +100,11 @@ public class FisherBehaviour : MonoBehaviour
 
     private float elapsedTime = 0;
 
-    public Node.Status Wait()
+    public Node.Status Wait(float waitSeconds)
     {
         elapsedTime += Time.deltaTime;
 
-        if(elapsedTime <= 5.0f)
+        if(elapsedTime <= waitSeconds)
         {
             return Node.Status.RUNNING;
         }
@@ -101,6 +113,21 @@ public class FisherBehaviour : MonoBehaviour
             elapsedTime = 0;
             return Node.Status.SUCCESS;
         }
+    }
+
+    public Node.Status WaitOnStart()
+    {
+        return Wait(WaitTimeOnStart);
+    }
+
+    public Node.Status WaitOnBoarding()
+    {
+        return Wait(WaitTimeOnBoarding);
+    }
+
+    public Node.Status WaitOnFishing()
+    {
+        return Wait(WaitTimeOnFishing);
     }
 
     // Update is called once per frame

@@ -468,6 +468,9 @@ MonoBehaviour:
   StartPoint: {fileID: 916657624}
   BoardPoint: {fileID: 1834918623}
   FishPoint: {fileID: 2104632564}
+  WaitTimeOnStart: 0
+  WaitTimeOnBoarding: 1
+  WaitTimeOnFishing: 3
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
