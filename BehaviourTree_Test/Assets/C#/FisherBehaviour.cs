@@ -34,7 +34,7 @@ public class FisherBehaviour : MonoBehaviour
 
     private NavMeshAgent _Agent;
     private BehaviourTree _Tree;
-    
+
     public enum ActionState
     {
         IDLE,
@@ -131,6 +131,11 @@ public class FisherBehaviour : MonoBehaviour
 
     public Node.Status GoToStorePoint()
     {
+        if(FishManager.FishNum <= 0)
+        {
+            return Node.Status.FAILURE;
+        }
+
         return GoToLocation(new Vector3(3 + (FishManager.FishNum - 1) % 5, 1.36f, 4.4f - FishManager.FishNum / 6));
     }
 
@@ -219,6 +224,7 @@ public class FisherBehaviour : MonoBehaviour
             FishManager.FishNum--;
             // remove last element of fish list
             GameObject go = FishManager.Fish[FishManager.Fish.Count - 1];
+            go.transform.SetParent(null);
             FishManager.Fish.Remove(go);
             Destroy(go);
             
@@ -343,5 +349,7 @@ public class FisherBehaviour : MonoBehaviour
 
         // use this for looping action
         _TreeStatus = _Tree.Process();
+        //Debug.Log(_Tree.children[_Tree.currentChild].name);
+        Debug.Log(_Tree.children[_Tree.currentChild].children[_Tree.children[_Tree.currentChild].currentChild].name);
     }
 }

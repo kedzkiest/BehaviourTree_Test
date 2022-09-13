@@ -1469,15 +1469,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
       propertyPath: WaitTimeOnFishing
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
       propertyPath: WaitTimeOnStoring
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
       propertyPath: WaitTimeOnBoarding
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
       propertyPath: SuccessProbabilityOnStart
