@@ -50,13 +50,18 @@ public class FishermanBehaviour : MonoBehaviour
 
     #endregion
 
-    #region Start
     // Start is called before the first frame update
     void Start()
     {
         _Agent = GetComponent<NavMeshAgent>();
         transform.position = StartPoint.transform.position;
 
+        InitTree();
+    }
+
+    #region Init
+    void InitTree()
+    {
         _Tree = new BehaviourTree();
         Sequence liveLife = new Sequence("liveLife");
 
@@ -103,6 +108,7 @@ public class FishermanBehaviour : MonoBehaviour
     #endregion
 
     #region LeafNode_Methods
+
     public Node.Status HasFish()
     {
         if(FishManager.FishNum < EnoughFishNum)
@@ -114,7 +120,8 @@ public class FishermanBehaviour : MonoBehaviour
         SEPlayer.GetComponent<AudioSource>().volume = 0;
         return Node.Status.FAILURE;
     }
-    
+
+    #region GoToMethods
     public Node.Status GoToBoardPoint()
     {
         return GoToLocation(BoardPoint.transform.position);
@@ -161,7 +168,9 @@ public class FishermanBehaviour : MonoBehaviour
 
         return Node.Status.RUNNING;
     }
+    #endregion
 
+    #region WaitMethods
     public Node.Status WaitOnStart()
     {
         return Wait(WaitTimeOnStart);
@@ -242,12 +251,14 @@ public class FishermanBehaviour : MonoBehaviour
 
         }
     }
+    #endregion
 
     void PlayFishEscapeSound()
     {
         if (SEPlayer.gameObject.activeSelf) SEPlayer.PlayFishEscapeSound();
     }
 
+    #region CatchFishMethods
     public Node.Status CatchTuna()
     {
         Node.Status s = CatchFish();
@@ -318,6 +329,7 @@ public class FishermanBehaviour : MonoBehaviour
 
         }
     }
+    #endregion
 
     public Node.Status StoreFish()
     {
@@ -347,9 +359,14 @@ public class FishermanBehaviour : MonoBehaviour
     }
     #endregion
 
-    #region Update
     // Update is called once per frame
     void Update()
+    {
+        ProcessTree();
+    }
+
+    #region ProcessTree
+    void ProcessTree()
     {
         /* use this for single action flow
         if(_TreeStatus != Node.Status.SUCCESS)
@@ -359,7 +376,7 @@ public class FishermanBehaviour : MonoBehaviour
         */
 
         // use this for resetting tree progress when action failed
-        if(_TreeStatus == Node.Status.FAILURE)
+        if (_TreeStatus == Node.Status.FAILURE)
         {
             _Tree.ResetTreeProgress();
         }
