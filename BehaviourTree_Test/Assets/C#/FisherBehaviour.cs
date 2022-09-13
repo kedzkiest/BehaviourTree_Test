@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class FisherBehaviour : MonoBehaviour
 {
+    #region Field
     public GameObject StartPoint;
     public GameObject BoardPoint;
     public GameObject FishPoint;
@@ -46,7 +47,9 @@ public class FisherBehaviour : MonoBehaviour
     public SEPlayer SEPlayer;
 
     public FishManager FishManager;
+    #endregion
 
+    #region Start
     // Start is called before the first frame update
     void Start()
     {
@@ -54,7 +57,7 @@ public class FisherBehaviour : MonoBehaviour
         transform.position = StartPoint.transform.position;
 
         _Tree = new BehaviourTree();
-        Sequence Wander = new Sequence("Wander");
+        Sequence liveLife = new Sequence("liveLife");
 
         // condition node
         Leaf hasGotFish = new Leaf("Has Got Fish", HasFish);
@@ -76,27 +79,29 @@ public class FisherBehaviour : MonoBehaviour
 
         Leaf storeFish = new Leaf("Store A Fish", StoreFish);
 
-        Wander.AddChild(goToStartPoint);
-        Wander.AddChild(waitOnStart);
+        liveLife.AddChild(goToStartPoint);
+        liveLife.AddChild(waitOnStart);
 
-        Wander.AddChild(hasGotFish);
+        liveLife.AddChild(hasGotFish);
 
-        Wander.AddChild(goToBoardPoint);
-        Wander.AddChild(waitOnBoarding);
+        liveLife.AddChild(goToBoardPoint);
+        liveLife.AddChild(waitOnBoarding);
 
-        Wander.AddChild(goToFishPoint);
+        liveLife.AddChild(goToFishPoint);
         // catchFish has a wait in it (doen not have a separate wait method)
-        Wander.AddChild(catchFish);
+        liveLife.AddChild(catchFish);
 
-        Wander.AddChild(goToStorePoint);
-        Wander.AddChild(waitOnStoring);
-        Wander.AddChild(storeFish);
+        liveLife.AddChild(goToStorePoint);
+        liveLife.AddChild(waitOnStoring);
+        liveLife.AddChild(storeFish);
 
-        _Tree.AddChild(Wander);
+        _Tree.AddChild(liveLife);
 
         _Tree.PrintTree();
     }
-    
+    #endregion
+
+    #region LeafNode_Methods
     public Node.Status HasFish()
     {
         if(FishManager.FishNum < EnoughFishNum)
@@ -111,28 +116,22 @@ public class FisherBehaviour : MonoBehaviour
     
     public Node.Status GoToBoardPoint()
     {
-        return GoToWaypoint(BoardPoint);
+        return GoToLocation(BoardPoint.transform.position);
     }
 
     public Node.Status GoToFishPoint()
     {
-        return GoToWaypoint(FishPoint);
+        return GoToLocation(FishPoint.transform.position);
     }
 
     public Node.Status GoToStartPoint()
     {
-        return GoToWaypoint(StartPoint);
+        return GoToLocation(StartPoint.transform.position);
     }
 
     public Node.Status GoToStorePoint()
     {
         return GoToLocation(new Vector3(3 + (FishManager.FishNum - 1) % 5, 1.36f, 4.4f - FishManager.FishNum / 6));
-    }
-
-    public Node.Status GoToWaypoint(GameObject waypoint)
-    {
-        Node.Status s = GoToLocation(waypoint.transform.position);
-        return s;
     }
 
     Node.Status GoToLocation(Vector3 destination)
@@ -306,7 +305,7 @@ public class FisherBehaviour : MonoBehaviour
         go.transform.SetParent(null);
 
         // basic position for fish
-        Vector3 fishPos = transform.position;
+        Vector3 fishPos = transform.position + new Vector3(0, -0.4f, 0);
 
         // adjust posiiton for Salmon
         if (go.name[0] == 'S') fishPos += new Vector3(-1.3f, 0.0f, -0.4f);
@@ -324,6 +323,7 @@ public class FisherBehaviour : MonoBehaviour
 
         return Node.Status.SUCCESS;
     }
+    #endregion
 
     // Update is called once per frame
     void Update()
