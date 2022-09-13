@@ -162,19 +162,19 @@ public class FishermanBehaviour : MonoBehaviour
         return Node.Status.RUNNING;
     }
 
-    private float elapsedTime = 0;
+    private float _elapsedTime = 0;
 
     public Node.Status Wait(float waitSeconds)
     {
-        elapsedTime += Time.deltaTime;
+        _elapsedTime += Time.deltaTime;
 
-        if(elapsedTime <= waitSeconds)
+        if(_elapsedTime <= waitSeconds)
         {
             return Node.Status.RUNNING;
         }
         else
         {
-            elapsedTime = 0;
+            _elapsedTime = 0;
             float rand = Random.Range(0.0f, 99.9f);
             string s = Node.currentProcess;
             float successProbability = 1;
@@ -222,6 +222,8 @@ public class FishermanBehaviour : MonoBehaviour
 
         if(s == Node.Status.FAILURE)
         {
+            if(FishManager.FishNum <= 0) return Node.Status.FAILURE;
+
             FishManager.FishNum--;
             // remove last element of fish list
             GameObject go = FishManager.Fish[FishManager.Fish.Count - 1];
@@ -248,15 +250,15 @@ public class FishermanBehaviour : MonoBehaviour
 
     public Node.Status CatchFish()
     {
-        elapsedTime += Time.deltaTime;
+        _elapsedTime += Time.deltaTime;
 
-        if (elapsedTime <= WaitTimeOnFishing)
+        if (_elapsedTime <= WaitTimeOnFishing)
         {
             return Node.Status.RUNNING;
         }
         else
         {
-            elapsedTime = 0;
+            _elapsedTime = 0;
             float rand = Random.Range(0.0f, 99.9f);
             string s = Node.currentProcess;
             float successProbability = 1;
@@ -319,6 +321,8 @@ public class FishermanBehaviour : MonoBehaviour
 
     public Node.Status StoreFish()
     {
+        if(transform.childCount < 3) return Node.Status.FAILURE;
+
         GameObject go = transform.GetChild(2).gameObject;
         go.transform.SetParent(null);
 
@@ -364,7 +368,7 @@ public class FishermanBehaviour : MonoBehaviour
         _TreeStatus = _Tree.Process();
 
         // for printing the current process
-        //Debug.Log(Node.currentProcess);
+        Debug.Log(Node.currentProcess);
     }
     #endregion
 }
