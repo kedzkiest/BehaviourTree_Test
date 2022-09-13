@@ -322,7 +322,7 @@ public class FisherBehaviour : MonoBehaviour
 
     public Node.Status StoreFish()
     {
-        GameObject go = transform.GetChild(1).gameObject;
+        GameObject go = transform.GetChild(2).gameObject;
         go.transform.SetParent(null);
 
         // basic position for fish

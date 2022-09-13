@@ -17,13 +17,13 @@ public class PlaySpeedChanger : MonoBehaviour
         {
             Time.timeScale = 1;
         }
-        else if (Input.GetKey(KeyCode.Alpha2))
-        {
-            Time.timeScale = 2;
-        }
         else if (Input.GetKey(KeyCode.Alpha3))
         {
             Time.timeScale = 3;
+        }
+        else if (Input.GetKey(KeyCode.Alpha5))
+        {
+            Time.timeScale = 5;
         }
     }
 }

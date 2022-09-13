@@ -1515,14 +1515,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
-      propertyPath: Tuna
-      value: 
-      objectReference: {fileID: 3996358357016738008, guid: 67a3ad0c5881e0745b6d8f5c50c50dcd, type: 3}
-    - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
-      propertyPath: Salmon
-      value: 
-      objectReference: {fileID: 1797431749166352946, guid: 3efe209ef39bec240a4800e960c4681f, type: 3}
-    - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
       propertyPath: SEPlayer
       value: 
       objectReference: {fileID: 1588021393}
@@ -1539,60 +1531,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 916657624}
     - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
-      propertyPath: StorePoint
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
       propertyPath: FishManager
       value: 
       objectReference: {fileID: 1797875825}
-    - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
-      propertyPath: EnoughFishNum
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
-      propertyPath: FishEscapePoint
-      value: 
-      objectReference: {fileID: 77813969}
-    - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
-      propertyPath: WaitTimeOnStart
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
-      propertyPath: WaitTimeOnFishing
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
-      propertyPath: WaitTimeOnStoring
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
-      propertyPath: WaitTimeOnBoarding
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
-      propertyPath: SuccessProbabilityOnStart
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
-      propertyPath: SuccessProbabilityCatchTuna
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
-      propertyPath: SuccessProbabilityOnFishing
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
-      propertyPath: SuccessProbabilityStoreFish
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
-      propertyPath: SuccessProbabilityOnBoarding
-      value: 0.95
-      objectReference: {fileID: 0}
-    - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
-      propertyPath: SuccessProbabilityCatchSalmon
-      value: 0.85
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
