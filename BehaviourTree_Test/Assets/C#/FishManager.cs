@@ -33,6 +33,11 @@ public class FishManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateFishNumText();
+    }
+
+    void UpdateFishNumText()
+    {
         FishNumText.text = "Number of fish: " + _FishNum;
     }
 
