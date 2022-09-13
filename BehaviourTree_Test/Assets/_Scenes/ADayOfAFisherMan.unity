@@ -1457,6 +1457,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2425198059686701438, guid: 364065c6cef63f5408c90159bfa24d5a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2425198059686701438, guid: 364065c6cef63f5408c90159bfa24d5a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2747954110024667834, guid: 364065c6cef63f5408c90159bfa24d5a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 364065c6cef63f5408c90159bfa24d5a, type: 3}
 --- !u!1001 &6809203401633972967
@@ -1468,7 +1480,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3683640743597735638, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
       propertyPath: m_Name
-      value: Fisher
+      value: Fisherman
       objectReference: {fileID: 0}
     - target: {fileID: 3684493352939664194, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
       propertyPath: m_RootOrder

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FisherBehaviour : MonoBehaviour
+public class FishermanBehaviour : MonoBehaviour
 {
     #region Field
     public GameObject StartPoint;
