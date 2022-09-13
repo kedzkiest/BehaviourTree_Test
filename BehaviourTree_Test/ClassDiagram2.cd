@@ -10,11 +10,11 @@
   <Class Name="PlaySpeedChanger" Collapsed="true">
     <Position X="9.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
       <FileName>Assets\C#\Debug\PlaySpeedChanger.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="FishermanBehaviour">
+  <Class Name="FishermanBehaviour" Collapsed="true">
     <Position X="9.75" Y="0.5" Width="1.5" />
     <NestedTypes>
       <Enum Name="FishermanBehaviour.ActionState" Collapsed="true">
@@ -24,7 +24,7 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>CAQCAQBACCAGAAAYAAAQFCEBEkQWgAAAAADFIDCACBo=</HashCode>
+      <HashCode>CIQCAQBACCAGAAAYAAAQFCEBEkQWgAAAAADFIDCACBo=</HashCode>
       <FileName>Assets\C#\FishermanBehaviour.cs</FileName>
     </TypeIdentifier>
   </Class>
