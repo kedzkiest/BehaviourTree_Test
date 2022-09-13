@@ -48,9 +48,6 @@ public class FishermanBehaviour : MonoBehaviour
 
     public FishManager FishManager;
 
-    // for debug
-    private Node nodeAtDepth1;
-    private Node nodeAtDepth2;
     #endregion
 
     #region Start
@@ -366,12 +363,8 @@ public class FishermanBehaviour : MonoBehaviour
         // use this for looping action
         _TreeStatus = _Tree.Process();
 
-        /* for printing the current process
-        nodeAtDepth1 = _Tree.children[_Tree.currentChild];
-        //Debug.Log(nodeAtDepth1.name);
-        nodeAtDepth2 = nodeAtDepth1.children[nodeAtDepth1.currentChild];
-        //Debug.Log(nodeAtDepth2.name);
-        */
+        // for printing the current process
+        //Debug.Log(Node.currentProcess);
     }
     #endregion
 }
