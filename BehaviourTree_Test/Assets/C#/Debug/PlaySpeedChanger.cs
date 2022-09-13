@@ -13,6 +13,11 @@ public class PlaySpeedChanger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ChangeGameSpeedOnKeyPress();
+    }
+
+    void ChangeGameSpeedOnKeyPress()
+    {
         if (Input.GetKey(KeyCode.Alpha1))
         {
             Time.timeScale = 1;
