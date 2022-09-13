@@ -232,7 +232,9 @@ public class FisherBehaviour : MonoBehaviour
             FishManager.Fish.Remove(go);
 
             go.AddComponent<Rigidbody>();
-            go.GetComponent<Rigidbody>().AddForce(new Vector3(-5f, 5f, -5f), ForceMode.Impulse);
+            go.GetComponent<Rigidbody>().AddForce(
+                new Vector3(-3f - go.transform.position.x, 5f, -go.transform.position.z), 
+                ForceMode.Impulse);
             Destroy(go, 1.5f);
             Invoke(nameof(PlayFishEscapeSound), 1.5f);
             
