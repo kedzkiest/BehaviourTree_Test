@@ -8,6 +8,8 @@ public class SEPlayer : MonoBehaviour
     public AudioClip SuccessSound;
     public AudioClip FailureSound;
 
+    public AudioClip FishEscapeSound;
+
     private AudioSource audioSource;
 
     void Start()
@@ -17,13 +19,16 @@ public class SEPlayer : MonoBehaviour
 
     public void PlaySuccessSound()
     {
-        audioSource.clip = SuccessSound;
-        audioSource.Play();
+        audioSource.PlayOneShot(SuccessSound);
     }
 
     public void PlayFailureSound()
     {
-        audioSource.clip = FailureSound;
-        audioSource.Play();
+        audioSource.PlayOneShot(FailureSound);
+    }
+
+    public void PlayFishEscapeSound()
+    {
+        audioSource.PlayOneShot(FishEscapeSound);
     }
 }

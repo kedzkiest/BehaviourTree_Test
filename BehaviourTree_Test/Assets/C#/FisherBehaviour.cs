@@ -234,11 +234,17 @@ public class FisherBehaviour : MonoBehaviour
             go.AddComponent<Rigidbody>();
             go.GetComponent<Rigidbody>().AddForce(new Vector3(-5f, 5f, -5f), ForceMode.Impulse);
             Destroy(go, 1.5f);
+            Invoke(nameof(PlayFishEscapeSound), 1.5f);
             
             return Node.Status.FAILURE;
         }
 
         return s;
+    }
+
+    void PlayFishEscapeSound()
+    {
+        SEPlayer.PlayFishEscapeSound();
     }
 
     public Node.Status CatchFish()

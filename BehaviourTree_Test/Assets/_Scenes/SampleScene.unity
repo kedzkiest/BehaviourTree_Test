@@ -1265,6 +1265,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 314382215279995075, guid: 53ee88ff04543204583a0c16787954ea, type: 3}
+      propertyPath: FishEscapeSound
+      value: 
+      objectReference: {fileID: 8300000, guid: fff424fd99bb832478febd0581fb9a8e, type: 3}
     - target: {fileID: 314382215279995100, guid: 53ee88ff04543204583a0c16787954ea, type: 3}
       propertyPath: m_Name
       value: SEPlayer
