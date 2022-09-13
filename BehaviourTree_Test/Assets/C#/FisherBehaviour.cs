@@ -47,6 +47,10 @@ public class FisherBehaviour : MonoBehaviour
     public SEPlayer SEPlayer;
 
     public FishManager FishManager;
+
+    // for debug
+    private Node nodeAtDepth1;
+    private Node nodeAtDepth2;
     #endregion
 
     #region Start
@@ -349,7 +353,12 @@ public class FisherBehaviour : MonoBehaviour
 
         // use this for looping action
         _TreeStatus = _Tree.Process();
-        //Debug.Log(_Tree.children[_Tree.currentChild].name);
-        Debug.Log(_Tree.children[_Tree.currentChild].children[_Tree.children[_Tree.currentChild].currentChild].name);
+
+        /* for printing the current process
+        nodeAtDepth1 = _Tree.children[_Tree.currentChild];
+        //Debug.Log(nodeAtDepth1.name);
+        nodeAtDepth2 = nodeAtDepth1.children[nodeAtDepth1.currentChild];
+        //Debug.Log(nodeAtDepth2.name);
+        */
     }
 }
