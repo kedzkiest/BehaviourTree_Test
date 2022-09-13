@@ -248,6 +248,38 @@ public class FishermanBehaviour : MonoBehaviour
         if (SEPlayer.gameObject.activeSelf) SEPlayer.PlayFishEscapeSound();
     }
 
+    public Node.Status CatchTuna()
+    {
+        Node.Status s = CatchFish();
+
+        if (s == Node.Status.SUCCESS)
+        {
+            FishManager.FishNum++;
+            GameObject go = Instantiate(Tuna);
+            go.transform.position = transform.position + new Vector3(0, 1.0f, 0);
+            go.transform.SetParent(transform);
+            FishManager.Fish.Add(go);
+        }
+
+        return s;
+    }
+
+    public Node.Status CatchSalmon()
+    {
+        Node.Status s = CatchFish();
+
+        if (s == Node.Status.SUCCESS)
+        {
+            FishManager.FishNum++;
+            GameObject go = Instantiate(Salmon);
+            go.transform.position = transform.position + new Vector3(-1.3f, 1.0f, -0.4f); ;
+            go.transform.SetParent(transform);
+            FishManager.Fish.Add(go);
+        }
+
+        return s;
+    }
+
     public Node.Status CatchFish()
     {
         _elapsedTime += Time.deltaTime;
@@ -285,38 +317,6 @@ public class FishermanBehaviour : MonoBehaviour
             return Node.Status.FAILURE;
 
         }
-    }
-
-    public Node.Status CatchTuna()
-    {
-        Node.Status s = CatchFish();
-
-        if (s == Node.Status.SUCCESS)
-        {
-            FishManager.FishNum++;
-            GameObject go = Instantiate(Tuna);
-            go.transform.position = transform.position + new Vector3(0, 1.0f, 0);
-            go.transform.SetParent(transform);
-            FishManager.Fish.Add(go);
-        }
-
-        return s;
-    }
-
-    public Node.Status CatchSalmon()
-    {
-        Node.Status s = CatchFish();
-
-        if (s == Node.Status.SUCCESS)
-        {
-            FishManager.FishNum++;
-            GameObject go = Instantiate(Salmon);
-            go.transform.position = transform.position + new Vector3(-1.3f, 1.0f, -0.4f); ;
-            go.transform.SetParent(transform);
-            FishManager.Fish.Add(go);
-        }
-
-        return s;
     }
 
     public Node.Status StoreFish()
