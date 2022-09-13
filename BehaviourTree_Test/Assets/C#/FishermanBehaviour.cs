@@ -201,7 +201,7 @@ public class FishermanBehaviour : MonoBehaviour
 
     private float _elapsedTime = 0;
 
-    public Node.Status Wait(float waitSeconds)
+    Node.Status Wait(float waitSeconds)
     {
         _elapsedTime += Time.deltaTime;
 
@@ -280,7 +280,7 @@ public class FishermanBehaviour : MonoBehaviour
         return s;
     }
 
-    public Node.Status CatchFish()
+    Node.Status CatchFish()
     {
         _elapsedTime += Time.deltaTime;
 
