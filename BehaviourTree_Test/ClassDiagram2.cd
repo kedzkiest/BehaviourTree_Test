@@ -1,2 +1,74 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BehaviourTree" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAgAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Assets\C#\BehaviourTree.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlaySpeedChanger" Collapsed="true">
+    <Position X="9.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\C#\Debug\PlaySpeedChanger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FishermanBehaviour">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="FishermanBehaviour.ActionState" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\C#\FishermanBehaviour.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>CAQCAQBACCAGAAAYAAAQFCEBEkQWgAAAAADFIDCACBo=</HashCode>
+      <FileName>Assets\C#\FishermanBehaviour.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FishManager" Collapsed="true">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACEAAAEAAAAAAAAEAACAAAAAAQAABAAAAAA=</HashCode>
+      <FileName>Assets\C#\FishManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Leaf" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\C#\Leaf.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Node" Collapsed="true">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQACAAAAAAAEAQAAgAAAAAAAAAEAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Assets\C#\Node.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Selector" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\C#\Selector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SEPlayer" Collapsed="true">
+    <Position X="11.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAABAACggAAAAAAAAACAAAAACEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\C#\SEPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sequence" Collapsed="true">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\C#\Sequence.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Yu Gothic UI" Size="9" />
+</ClassDiagram>
