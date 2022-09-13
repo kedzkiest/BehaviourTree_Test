@@ -346,6 +346,7 @@ public class FishermanBehaviour : MonoBehaviour
     }
     #endregion
 
+    #region Update
     // Update is called once per frame
     void Update()
     {
@@ -372,4 +373,5 @@ public class FishermanBehaviour : MonoBehaviour
         //Debug.Log(nodeAtDepth2.name);
         */
     }
+    #endregion
 }
