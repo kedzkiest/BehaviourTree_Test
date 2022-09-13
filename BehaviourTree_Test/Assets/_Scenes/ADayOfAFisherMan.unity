@@ -1106,7 +1106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90a4f3940633a4d4ca012b0d257c3559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _FishNum: 0
   FishNumText: {fileID: 102613833}
 --- !u!1 &1834918623
 GameObject:
@@ -1561,7 +1560,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
       propertyPath: WaitTimeOnFishing
-      value: 1
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
       propertyPath: WaitTimeOnStoring
@@ -1569,7 +1568,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
       propertyPath: WaitTimeOnBoarding
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
       propertyPath: SuccessProbabilityOnStart
@@ -1577,7 +1576,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
       propertyPath: SuccessProbabilityCatchTuna
-      value: 0.7
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
       propertyPath: SuccessProbabilityOnFishing
@@ -1585,15 +1584,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
       propertyPath: SuccessProbabilityStoreFish
-      value: 0.8
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
       propertyPath: SuccessProbabilityOnBoarding
-      value: 1
+      value: 0.95
       objectReference: {fileID: 0}
     - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
       propertyPath: SuccessProbabilityCatchSalmon
-      value: 0.9
+      value: 0.85
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}

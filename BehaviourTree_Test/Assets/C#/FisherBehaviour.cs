@@ -178,7 +178,7 @@ public class FisherBehaviour : MonoBehaviour
         else
         {
             elapsedTime = 0;
-            float rand = Random.Range(0.0f, 100.0f);
+            float rand = Random.Range(0.0f, 99.9f);
             string s = Node.currentProcess;
             float successProbability = 1;
 
@@ -195,7 +195,7 @@ public class FisherBehaviour : MonoBehaviour
                     break;
             }
 
-            if(rand <= successProbability * 100)
+            if(rand < successProbability * 100)
             {
                 //Debug.Log("Success");
                 if(SEPlayer.gameObject.activeSelf) SEPlayer.PlaySuccessSound();
@@ -260,7 +260,7 @@ public class FisherBehaviour : MonoBehaviour
         else
         {
             elapsedTime = 0;
-            float rand = Random.Range(0.0f, 100.0f);
+            float rand = Random.Range(0.0f, 99.9f);
             string s = Node.currentProcess;
             float successProbability = 1;
 
@@ -274,7 +274,7 @@ public class FisherBehaviour : MonoBehaviour
                     break;
             }
 
-            if (rand <= successProbability * 100)
+            if (rand < successProbability * 100)
             {
                 //Debug.Log("Success");
                 if (SEPlayer.gameObject.activeSelf) SEPlayer.PlaySuccessSound();
