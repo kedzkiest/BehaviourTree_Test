@@ -246,7 +246,7 @@ public class FishermanBehaviour : MonoBehaviour
 
     void PlayFishEscapeSound()
     {
-        SEPlayer.PlayFishEscapeSound();
+        if (SEPlayer.gameObject.activeSelf) SEPlayer.PlayFishEscapeSound();
     }
 
     public Node.Status CatchFish()
