@@ -162,50 +162,6 @@ public class FishermanBehaviour : MonoBehaviour
         return Node.Status.RUNNING;
     }
 
-    private float _elapsedTime = 0;
-
-    public Node.Status Wait(float waitSeconds)
-    {
-        _elapsedTime += Time.deltaTime;
-
-        if(_elapsedTime <= waitSeconds)
-        {
-            return Node.Status.RUNNING;
-        }
-        else
-        {
-            _elapsedTime = 0;
-            float rand = Random.Range(0.0f, 99.9f);
-            string s = Node.currentProcess;
-            float successProbability = 1;
-
-            switch (s)
-            {
-                case "Wait On Start":
-                    successProbability = SuccessProbabilityOnStart;
-                    break;
-                case "Wait On Boarding":
-                    successProbability = SuccessProbabilityOnBoarding;
-                    break;
-                case "Wait On Storing":
-                    successProbability = SuccessProbabilityStoreFish;
-                    break;
-            }
-
-            if(rand < successProbability * 100)
-            {
-                //Debug.Log("Success");
-                if(SEPlayer.gameObject.activeSelf) SEPlayer.PlaySuccessSound();
-                return Node.Status.SUCCESS;
-            }
-
-            //Debug.Log("Failure");
-            if (SEPlayer.gameObject.activeSelf) SEPlayer.PlayFailureSound();
-            return Node.Status.FAILURE;
-
-        }
-    }
-
     public Node.Status WaitOnStart()
     {
         return Wait(WaitTimeOnStart);
@@ -241,6 +197,50 @@ public class FishermanBehaviour : MonoBehaviour
         }
 
         return s;
+    }
+
+    private float _elapsedTime = 0;
+
+    public Node.Status Wait(float waitSeconds)
+    {
+        _elapsedTime += Time.deltaTime;
+
+        if (_elapsedTime <= waitSeconds)
+        {
+            return Node.Status.RUNNING;
+        }
+        else
+        {
+            _elapsedTime = 0;
+            float rand = Random.Range(0.0f, 99.9f);
+            string s = Node.currentProcess;
+            float successProbability = 1;
+
+            switch (s)
+            {
+                case "Wait On Start":
+                    successProbability = SuccessProbabilityOnStart;
+                    break;
+                case "Wait On Boarding":
+                    successProbability = SuccessProbabilityOnBoarding;
+                    break;
+                case "Wait On Storing":
+                    successProbability = SuccessProbabilityStoreFish;
+                    break;
+            }
+
+            if (rand < successProbability * 100)
+            {
+                //Debug.Log("Success");
+                if (SEPlayer.gameObject.activeSelf) SEPlayer.PlaySuccessSound();
+                return Node.Status.SUCCESS;
+            }
+
+            //Debug.Log("Failure");
+            if (SEPlayer.gameObject.activeSelf) SEPlayer.PlayFailureSound();
+            return Node.Status.FAILURE;
+
+        }
     }
 
     void PlayFishEscapeSound()
