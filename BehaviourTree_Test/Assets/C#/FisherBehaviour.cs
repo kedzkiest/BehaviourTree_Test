@@ -230,7 +230,10 @@ public class FisherBehaviour : MonoBehaviour
             GameObject go = FishManager.Fish[FishManager.Fish.Count - 1];
             go.transform.SetParent(null);
             FishManager.Fish.Remove(go);
-            Destroy(go);
+
+            go.AddComponent<Rigidbody>();
+            go.GetComponent<Rigidbody>().AddForce(new Vector3(-5f, 5f, -5f), ForceMode.Impulse);
+            Destroy(go, 1.5f);
             
             return Node.Status.FAILURE;
         }

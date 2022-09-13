@@ -1493,7 +1493,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
       propertyPath: SuccessProbabilityStoreFish
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
       propertyPath: SuccessProbabilityOnBoarding
