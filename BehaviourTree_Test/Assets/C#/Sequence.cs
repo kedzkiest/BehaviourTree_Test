@@ -9,6 +9,15 @@ public class Sequence : Node
         name = n;
     }
 
+    // Description of the method Process() overrided by Sequence
+    //
+    // The sequence node visits each of its child nodes in turn, and if
+    // any of them return FAILURE, the sequence node immediately returns
+    // FAILURE to its parent.
+    //
+    // The sequence node returns SUCCESS to its parent only when
+    // all child nodes visited return SUCCESS.
+
     public override Status Process()
     {
         Status childStatus = children[currentChild].Process();
