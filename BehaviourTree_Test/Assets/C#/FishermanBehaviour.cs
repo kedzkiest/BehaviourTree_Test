@@ -240,12 +240,12 @@ public class FishermanBehaviour : MonoBehaviour
 
             if (rand < successProbability * 100)
             {
-                //Debug.Log("Success");
+                Debug.Log("SUCCESS: " + Node.currentProcess);
                 if (SEPlayer.gameObject.activeSelf) SEPlayer.PlaySuccessSound();
                 return Node.Status.SUCCESS;
             }
 
-            //Debug.Log("Failure");
+            Debug.Log("FAILURE: " + Node.currentProcess);
             if (SEPlayer.gameObject.activeSelf) SEPlayer.PlayFailureSound();
             return Node.Status.FAILURE;
 
@@ -318,12 +318,12 @@ public class FishermanBehaviour : MonoBehaviour
 
             if (rand < successProbability * 100)
             {
-                //Debug.Log("Success");
+                Debug.Log("SUCCESS: " + Node.currentProcess);
                 if (SEPlayer.gameObject.activeSelf) SEPlayer.PlaySuccessSound();
                 return Node.Status.SUCCESS;
             }
 
-            //Debug.Log("Failure");
+            Debug.Log("FAILURE: " + Node.currentProcess);
             if (SEPlayer.gameObject.activeSelf) SEPlayer.PlayFailureSound();
             return Node.Status.FAILURE;
 
@@ -366,6 +366,10 @@ public class FishermanBehaviour : MonoBehaviour
     }
 
     #region ProcessTree
+    private bool isCalledOnce = false;
+    private string currentProcess = "";
+    private string tmp = "";
+
     void ProcessTree()
     {
         /* use this for single action flow
@@ -384,8 +388,20 @@ public class FishermanBehaviour : MonoBehaviour
         // use this for looping action
         _TreeStatus = _Tree.Process();
 
+
         // for printing the current process
-        Debug.Log(Node.currentProcess);
+        currentProcess = Node.currentProcess;
+        if(currentProcess != tmp)
+        {
+            tmp = currentProcess;
+            isCalledOnce = false;
+        }
+
+        if (!isCalledOnce)
+        {
+            Debug.Log(currentProcess);
+            isCalledOnce = true;
+        }
     }
     #endregion
 }
