@@ -368,7 +368,7 @@ public class FishermanBehaviour : MonoBehaviour
     #region ProcessTree
     private bool isCalledOnce = false;
     private string currentProcess = "";
-    private string tmp = "";
+    private string previousProcess = "";
 
     void ProcessTree()
     {
@@ -391,9 +391,9 @@ public class FishermanBehaviour : MonoBehaviour
 
         // for printing the current process
         currentProcess = Node.currentProcess;
-        if(currentProcess != tmp)
+        if(currentProcess != previousProcess)
         {
-            tmp = currentProcess;
+            previousProcess = currentProcess;
             isCalledOnce = false;
         }
 
