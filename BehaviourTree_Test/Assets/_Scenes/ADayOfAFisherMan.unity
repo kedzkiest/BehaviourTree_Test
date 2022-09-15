@@ -1558,5 +1558,9 @@ PrefabInstance:
       propertyPath: PersistInAction
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6809203402154495231, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}
+      propertyPath: WaitTimeOnStart
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00ed78209fac4334aac1eab8105ea74e, type: 3}

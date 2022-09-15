@@ -114,10 +114,12 @@ public class FishermanBehaviour : MonoBehaviour
         if(FishManager.FishNum < EnoughFishNum)
         {
             SEPlayer.GetComponent<AudioSource>().volume = 1;
+            Debug.Log("SUCCESS: " + Node.currentProcess);
             return Node.Status.SUCCESS;
         }
 
         SEPlayer.GetComponent<AudioSource>().volume = 0;
+        Debug.Log("FAILURE: " + Node.currentProcess);
         return Node.Status.FAILURE;
     }
 
@@ -391,7 +393,8 @@ public class FishermanBehaviour : MonoBehaviour
 
         // for printing the current process
         currentProcess = Node.currentProcess;
-        if(currentProcess != previousProcess)
+        // do not want to print condition node here
+        if(currentProcess != previousProcess && currentProcess != "Has Got Fish")
         {
             previousProcess = currentProcess;
             isCalledOnce = false;
