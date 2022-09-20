@@ -146,7 +146,13 @@ public class FishermanBehaviour : MonoBehaviour
             return Node.Status.FAILURE;
         }
 
-        return GoToLocation(new Vector3(3 + (FishManager.FishNum - 1) % 5, 1.36f, 4.4f - FishManager.FishNum / 6));
+        int zOffset = 0;
+        if(FishManager.FishNum % 5 == 0)
+        {
+            zOffset = 1;
+        }
+
+        return GoToLocation(new Vector3(3 + (FishManager.FishNum-1) % 5, 1.36f, 4.4f - FishManager.FishNum / 5 + zOffset));
     }
 
     Node.Status GoToLocation(Vector3 destination)
